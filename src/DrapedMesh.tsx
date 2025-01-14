@@ -18,7 +18,6 @@ export const DrapedMesh: FC<Props> = ({ mesh, enabled = true }) => {
         const defaultAutoClear = gl.autoClear;
         gl.autoClear = false;
 
-
         const m = mesh.material;
         if (!(m instanceof Material)) return;
 
