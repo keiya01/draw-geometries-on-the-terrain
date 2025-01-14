@@ -19,7 +19,7 @@ shape.lineTo(-100, 100 - width);
 
 const MESHES = [
   new Mesh(new CylinderGeometry(10, 10, 100, 30), new MeshBasicMaterial({ color: 0xffff00 })).translateX(-50).translateZ(-30),
-  new Mesh(new ExtrudeGeometry(shape, { depth: 40 }), new MeshBasicMaterial({ color: 0xff00ff })).rotateX(-Math.PI / 2).translateZ(-20),
+  new Mesh(new ExtrudeGeometry(shape, { depth: 60 }), new MeshBasicMaterial({ color: 0xff00ff })).rotateX(-Math.PI / 2).translateZ(-30),
 ];
 
 const GL_PROPS = { stencil: true };

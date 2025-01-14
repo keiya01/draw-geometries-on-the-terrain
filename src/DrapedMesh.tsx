@@ -33,21 +33,21 @@ export const DrapedMesh: FC<Props> = ({ mesh, enabled = true }) => {
 
         DRAPED_SCENE.add(mesh);
 
-        // Front
+        // Back
         m.stencilFunc = AlwaysStencilFunc;
         m.stencilFail = KeepStencilOp;
         m.stencilZPass = KeepStencilOp;
-        m.stencilZFail = DecrementWrapStencilOp;
-        m.side = FrontSide;
+        m.stencilZFail = IncrementWrapStencilOp;
+        m.side = BackSide;
         m.colorWrite = false;
         m.depthWrite = false;
         m.stencilWrite = true;
         m.depthTest = true;
         gl.render(DRAPED_SCENE, camera);
-
-        // Back
-        m.stencilZFail = IncrementWrapStencilOp;
-        m.side = BackSide;
+        
+        // Front
+        m.stencilZFail = DecrementWrapStencilOp;
+        m.side = FrontSide;
         gl.render(DRAPED_SCENE, camera);
 
         // Final
@@ -55,9 +55,8 @@ export const DrapedMesh: FC<Props> = ({ mesh, enabled = true }) => {
         m.stencilFail = ZeroStencilOp;
         m.stencilZFail = ZeroStencilOp;
         m.stencilZPass = ZeroStencilOp;
-        m.side = FrontSide;
+        m.side = BackSide;
         m.colorWrite = true;
-        m.depthWrite = true;
         m.depthTest = false;
         gl.render(DRAPED_SCENE, camera);
 
