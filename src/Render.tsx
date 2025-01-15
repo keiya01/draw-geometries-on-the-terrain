@@ -1,9 +1,19 @@
 import { useFrame } from "@react-three/fiber";
 import { FC } from "react";
+import { Scene, WebGLRenderTarget } from "three";
 
-export const Render: FC = () => {
-    useFrame(({ gl, scene, camera }) => {
-        gl.render(scene, camera);
+type Props = {
+    scene?: Scene,
+    renderTarget?: WebGLRenderTarget,
+}
+
+export const Render: FC<Props> = ({ scene, renderTarget }) => {
+    useFrame(({ gl, scene: originalScene, camera }) => {
+        if(renderTarget) {
+            gl.setRenderTarget(renderTarget);
+        }
+        gl.render(scene ?? originalScene, camera);
+        gl.setRenderTarget(null);
     }, 1);
 
     return null;
