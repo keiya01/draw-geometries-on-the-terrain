@@ -29,6 +29,7 @@ export const DrapedMesh: FC<Props> = ({ scene, mesh, enabled = true, normalMap }
             m.colorWrite = true;
             m.depthWrite = true;
             m.depthTest = true;
+            m.side = FrontSide;
             scene.add(mesh);
             gl.render(scene, camera);
             scene.remove(mesh);
