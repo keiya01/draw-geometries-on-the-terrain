@@ -20,13 +20,13 @@ shape.lineTo(0, 100 - width);
 shape.lineTo(-100, 100 - width);
 
 const MESHES = [
-  new Mesh(new CylinderGeometry(10, 10, 100, 30), new DrapedLambertMaterial({ color: 0xffff00 })).translateX(-50).translateZ(-30),
-  new Mesh(new ExtrudeGeometry(shape, { depth: 60 }), new DrapedLambertMaterial({ color: 0xff00ff })).rotateX(-Math.PI / 2).translateZ(-30),
+  new Mesh(new CylinderGeometry(10, 10, 100, 30), new DrapedLambertMaterial({ color: 0xffff00, reflectivity: 0 })).translateX(-50).translateZ(-30),
+  new Mesh(new ExtrudeGeometry(shape, { depth: 60 }), new DrapedLambertMaterial({ color: 0xff00ff, reflectivity: 0 })).rotateX(-Math.PI / 2).translateZ(-30),
 ];
 
 const GL_PROPS = { stencil: true };
 
-const NORMAL_RENDER_TARGET = new WebGLRenderTarget(window.innerWidth, window.innerHeight);
+const NORMAL_RENDER_TARGET = new WebGLRenderTarget(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio);
 
 export default function App() {
   const { drape, terrainScale } = useControls({
